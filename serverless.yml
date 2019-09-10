@@ -8,14 +8,7 @@ provider:
   stage: ${opt:stage, 'dev'}
   region: us-east-1
 
-functions:
-  createUser:
-    handler: services/users/handler.create
-    events:
-      - http:
-          path: users/create
-          method: get
-          cors: true
+functions: ${file(ymls/functions.yml)}
 
 plugins:
   - serverless-offline

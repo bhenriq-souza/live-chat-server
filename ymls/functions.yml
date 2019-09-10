@@ -1,0 +1,7 @@
+createUser:
+  handler: services/users/handler.create
+  events:
+    - http:
+        path: users/create
+        method: get
+        cors: true
