@@ -1,3 +1,4 @@
+## Users ##
 createUser:
   handler: services/users/handler.create
   events:

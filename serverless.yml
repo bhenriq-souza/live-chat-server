@@ -6,9 +6,35 @@ provider:
   profile: personal
   runtime: nodejs10.x
   stage: ${opt:stage, 'dev'}
-  region: us-east-1
+  region: ${self:custom.regions.${self:provider.stage}}
+  environment: ${file(ymls/environment.yml)}
 
 functions: ${file(ymls/functions.yml)}
 
+custom: ${file(ymls/custom.yml)}
+
+resources:
+  Resources: ${file(ymls/resources.yml)}
+
 plugins:
   - serverless-offline
+
+package:
+  exclude:
+    - coverage/**
+    - _warmup/**
+    - test/**
+    - .nyc_output/**
+    - forms/**
+    - .env
+    - .bot-plugin/**
+    - .editorconfig
+    - .gitignore
+    - .eslintignore
+    - .eslintrc.js
+    - package-lock.json
+    - README.md
+    - .vscode/**
+    - .serverless_plugins/**
+    - ymls/**
+    - docs/**
