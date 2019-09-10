@@ -6,7 +6,7 @@ provider:
   profile: personal
   runtime: nodejs10.x
   stage: ${opt:stage, 'dev'}
-  region: ${self:custom.regions.${self:provider.stage}}
+  region: ${self:custom.REGION.${self:provider.stage}}
   environment: ${file(ymls/environment.yml)}
 
 functions: ${file(ymls/functions.yml)}

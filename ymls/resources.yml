@@ -1,0 +1,5 @@
+CognitoIdentityPool:
+  Type: AWS::Cognito::IdentityPool
+  Properties:
+    IdentityPoolName: ${self:custom.STAGE}IdentityPool
+    AllowUnauthenticatedIdentities: true
