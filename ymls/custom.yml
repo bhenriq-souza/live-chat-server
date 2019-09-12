@@ -4,3 +4,25 @@ REGION:
   prd: us-east-1
   dev: us-east-1
   hml: us-east-1
+
+DYNAMODB_USER_TABLE_SIZE:
+  prd:
+    READ: 5
+    WRITE: 5
+  dev:
+    READ: 3
+    WRITE: 3
+  hml:
+    READ: 3
+    WRITE: 3
+
+DYNAMODB_CHAT_TABLE_SIZE:
+  prd:
+    READ: 5
+    WRITE: 5
+  dev:
+    READ: 3
+    WRITE: 3
+  hml:
+    READ: 3
+    WRITE: 3

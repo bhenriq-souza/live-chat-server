@@ -3,3 +3,41 @@ CognitoIdentityPool:
   Properties:
     IdentityPoolName: ${self:custom.STAGE}IdentityPool
     AllowUnauthenticatedIdentities: true
+
+userTable:
+  Type: "AWS::DynamoDB::Table"
+  Properties:
+    TableName: ${self:service}-${self:provider.stage}-user
+    AttributeDefinitions:
+      - AttributeName: "id"
+        AttributeType: "S"
+    KeySchema:
+      - AttributeName: "id"
+        KeyType: "HASH"
+    ProvisionedThroughput:
+      ReadCapacityUnits: ${self:custom.DYNAMODB_USER_TABLE_SIZE.${self:provider.stage}.READ}
+      WriteCapacityUnits: ${self:custom.DYNAMODB_USER_TABLE_SIZE.${self:provider.stage}.WRITE}
+    TimeToLiveSpecification:
+      AttributeName: ttl
+      Enabled: true
+    SSESpecification:
+      SSEEnabled: true
+
+chatTable:
+  Type: "AWS::DynamoDB::Table"
+  Properties:
+    TableName: ${self:service}-${self:provider.stage}-chat
+    AttributeDefinitions:
+      - AttributeName: "id"
+        AttributeType: "S"
+    KeySchema:
+      - AttributeName: "id"
+        KeyType: "HASH"
+    ProvisionedThroughput:
+      ReadCapacityUnits: ${self:custom.DYNAMODB_CHAT_TABLE_SIZE.${self:provider.stage}.READ}
+      WriteCapacityUnits: ${self:custom.DYNAMODB_CHAT_TABLE_SIZE.${self:provider.stage}.WRITE}
+    TimeToLiveSpecification:
+      AttributeName: ttl
+      Enabled: true
+    SSESpecification:
+      SSEEnabled: true
